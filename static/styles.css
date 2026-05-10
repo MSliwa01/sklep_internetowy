@@ -1,0 +1,243 @@
+:root {
+  --bg: #0b1020;
+  --surface: #101827;
+  --surface-2: #141f33;
+  --text: #f8fafc;
+  --muted: #f8fafc;
+  --accent: #f97316;
+  --accent-2: #22d3ee;
+  --border: rgba(148, 163, 184, 0.2);
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.12), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(249, 115, 22, 0.18), transparent 45%),
+    linear-gradient(180deg, #0b1020 0%, #0b1426 100%);
+  color: var(--text);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg-blob {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.blob-1 {
+  background: #22d3ee;
+  top: -120px;
+  left: -120px;
+}
+
+.blob-2 {
+  background: #f97316;
+  bottom: -140px;
+  right: -140px;
+}
+
+main,
+nav {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-glass {
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.navbar-brand {
+  letter-spacing: 0.4px;
+}
+
+.nav-link {
+  color: var(--text);
+}
+
+.nav-link:hover {
+  color: var(--accent-2);
+}
+
+.cart-pill {
+  background: var(--accent-2);
+  color: #0b1020;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  margin-left: 6px;
+}
+
+.hero-badge {
+  background: rgba(34, 211, 238, 0.2);
+  border: 1px solid rgba(34, 211, 238, 0.5);
+  color: #cffafe;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.product-card {
+  background: rgba(16, 24, 39, 0.92);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: float-in 0.7s ease forwards;
+  opacity: 0;
+  transform: translateY(12px);
+  animation-delay: var(--delay, 0ms);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px rgba(15, 23, 42, 0.45);
+}
+
+@keyframes float-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-thumb {
+  background: var(--surface-2);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.product-thumb img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.product-hero {
+  background: var(--surface-2);
+  border-radius: 24px;
+  padding: 20px;
+}
+
+.product-hero img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.product-desc {
+  color: #f8fafc;
+}
+
+.text-muted {
+  color: #f8fafc !important;
+}
+
+.product-title {
+  color: #f8fafc;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-2);
+}
+
+.price-lg {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stock {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.in-stock {
+  color: #22c55e;
+}
+
+.out-stock {
+  color: #f43f5e;
+}
+
+.glass-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.4);
+}
+
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--text);
+  --bs-table-border-color: var(--border);
+}
+
+.table,
+.table th,
+.table td,
+.table-dark,
+.table-dark th,
+.table-dark td {
+  color: #f8fafc;
+}
+
+.empty-state {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px dashed var(--border);
+  padding: 32px;
+  text-align: center;
+  border-radius: 16px;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #0b1020;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: #fb923c;
+  border-color: #fb923c;
+  color: #0b1020;
+}
+
+.btn-outline-light {
+  border-color: rgba(226, 232, 240, 0.4);
+  color: #f8fafc;
+}
+
+.btn-outline-light:hover {
+  background: rgba(226, 232, 240, 0.12);
+  color: #f8fafc;
+}
+
+.btn-outline-info {
+  border-color: rgba(34, 211, 238, 0.5);
+  color: var(--accent-2);
+}
+
+.btn-outline-info:hover {
+  background: rgba(34, 211, 238, 0.12);
+  color: var(--accent-2);
+}
+
+.alert {
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--text);
+}
+
+.admin-stat-title,
+.admin-stat-value {
+  color: #f8fafc;
+}

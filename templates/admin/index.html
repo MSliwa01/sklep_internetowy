@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Panel admina | Sklep Komputerowy{% endblock %}
+
+{% block content %}
+<h1 class="h3 fw-semibold mb-4">Panel admina</h1>
+
+<div class="row g-4 mb-4">
+  <div class="col-md-6">
+    <div class="card glass-card">
+      <div class="card-body">
+        <h5 class="card-title admin-stat-title">Produkty</h5>
+        <p class="display-6 admin-stat-value">{{ product_count }}</p>
+        <a class="btn btn-outline-light" href="{{ url_for('admin_products') }}">Zarzadzaj produktami</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card glass-card">
+      <div class="card-body">
+        <h5 class="card-title admin-stat-title">Zamowienia</h5>
+        <p class="display-6 admin-stat-value">{{ order_count }}</p>
+        <a class="btn btn-outline-light" href="{{ url_for('admin_orders') }}">Zobacz zamowienia</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card glass-card">
+      <div class="card-body">
+        <h5 class="card-title admin-stat-title">Bezpieczenstwo</h5>
+        <p class="mb-3 text-muted">Zmien haslo konta admina.</p>
+        <a class="btn btn-outline-light" href="{{ url_for('admin_change_password') }}">Zmien haslo admina</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

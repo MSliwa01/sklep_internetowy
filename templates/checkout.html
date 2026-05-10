@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout | Sklep Komputerowy{% endblock %}
+
+{% block content %}
+<h1 class="h3 fw-semibold mb-4">Finalizacja zamowienia</h1>
+
+<div class="row g-4">
+  <div class="col-lg-8">
+    <div class="card glass-card">
+      <div class="card-body">
+        <h5 class="card-title">Podsumowanie</h5>
+        <ul class="list-group list-group-flush mt-3">
+          {% for item in items %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <div class="fw-semibold">{{ item.product.name }}</div>
+              <small class="text-muted">Ilosc: {{ item.quantity }}</small>
+            </div>
+            <span>{{ format_price(item.line_total) }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <span class="fw-semibold">Razem</span>
+          <span class="price-lg">{{ format_price(total) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card glass-card">
+      <div class="card-body">
+        <h5 class="card-title">Potwierdzenie</h5>
+        <p class="text-muted">Po kliknieciu zamowienie zostanie zapisane w systemie.</p>
+        <form method="post">
+          <button class="btn btn-primary w-100">Zloz zamowienie</button>
+        </form>
+        <a class="btn btn-outline-light w-100 mt-2" href="{{ url_for('cart') }}">Wroc do koszyka</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

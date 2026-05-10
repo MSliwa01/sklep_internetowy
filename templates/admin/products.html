@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Produkty | Panel admina{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 fw-semibold">Produkty</h1>
+  <a class="btn btn-primary" href="{{ url_for('admin_product_new') }}">Nowy produkt</a>
+</div>
+
+<div class="card glass-card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-dark table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Nazwa</th>
+            <th class="text-end">Cena</th>
+            <th class="text-center">Magazyn</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td>{{ product.name }}</td>
+            <td class="text-end">{{ format_price(product.price_cents) }}</td>
+            <td class="text-center">{{ product.stock }}</td>
+            <td class="text-end">
+              <a class="btn btn-sm btn-outline-light" href="{{ url_for('admin_product_edit', product_id=product.id) }}">Edytuj</a>
+              <form method="post" action="{{ url_for('admin_product_delete', product_id=product.id) }}" class="d-inline">
+                <button class="btn btn-sm btn-outline-danger">Usun</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

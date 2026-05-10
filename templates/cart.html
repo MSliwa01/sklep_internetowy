@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Koszyk | Sklep Komputerowy{% endblock %}
+
+{% block content %}
+<h1 class="h3 fw-semibold mb-4">Twoj koszyk</h1>
+
+{% if items %}
+<form method="post" action="{{ url_for('cart_update') }}">
+  <div class="table-responsive">
+    <table class="table table-dark table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Produkt</th>
+          <th class="text-center">Ilosc</th>
+          <th class="text-end">Cena</th>
+          <th class="text-end">Suma</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.product.name }}</td>
+          <td class="text-center" style="max-width: 140px;">
+            <input type="number" class="form-control" name="qty_{{ item.product.id }}" min="1" max="{{ item.product.stock }}" value="{{ item.quantity }}">
+          </td>
+          <td class="text-end">{{ format_price(item.product.price_cents) }}</td>
+          <td class="text-end">{{ format_price(item.line_total) }}</td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-outline-danger" formaction="{{ url_for('cart_remove', product_id=item.product.id) }}" formmethod="post">Usun</button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+    <a class="btn btn-outline-light" href="{{ url_for('index') }}">Kontynuuj zakupy</a>
+    <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+      <span class="fw-semibold me-0 me-sm-3">Razem: {{ format_price(total) }}</span>
+      <button type="submit" class="btn btn-outline-info">Aktualizuj koszyk</button>
+      <a class="btn btn-primary" href="{{ url_for('checkout') }}">Przejdz do kasy</a>
+    </div>
+  </div>
+</form>
+{% else %}
+  <div class="empty-state">
+    Koszyk jest pusty. <a href="{{ url_for('index') }}">Wroc do katalogu</a>.
+  </div>
+{% endif %}
+{% endblock %}

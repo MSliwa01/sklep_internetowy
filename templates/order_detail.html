@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Zamowienie #{{ order.id }} | Sklep Komputerowy{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 fw-semibold">Zamowienie #{{ order.id }}</h1>
+  <span class="badge rounded-pill text-bg-info">{{ order.status }}</span>
+</div>
+
+<div class="card glass-card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-dark table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Produkt</th>
+            <th class="text-center">Ilosc</th>
+            <th class="text-end">Cena</th>
+            <th class="text-end">Suma</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in order.items %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td class="text-center">{{ item.quantity }}</td>
+            <td class="text-end">{{ format_price(item.unit_price_cents) }}</td>
+            <td class="text-end">{{ format_price(item.unit_price_cents * item.quantity) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-between mt-3">
+      <span class="fw-semibold">Razem</span>
+      <span class="price">{{ format_price(order.total_cents) }}</span>
+    </div>
+  </div>
+</div>
+{% endblock %}
