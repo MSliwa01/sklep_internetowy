@@ -9,7 +9,7 @@ Prosty sklep z podzespolami komputerowymi, koszykiem, zamowieniami i panelem adm
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e .
+pip install -r requirements.txt
 ```
 
 2. Uruchom aplikacje:
@@ -40,7 +40,7 @@ python main.py
 3. Ustaw:
 
 ```
-Build Command: pip install -e .
+Build Command: pip install -r requirements.txt
 Start Command: gunicorn main:app --bind 0.0.0.0:$PORT
 ```
 
